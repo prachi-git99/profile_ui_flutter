@@ -86,6 +86,7 @@ class _BusinessAssetScreenState extends State<BusinessAssetScreen> {
             "imageUrl":image
           };
           log("$data");
+          descController.clear();
         })
       ],
     );

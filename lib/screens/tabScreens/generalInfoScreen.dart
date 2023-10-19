@@ -49,7 +49,7 @@ class _GeneralInfoScreenState extends State<GeneralInfoScreen> {
             child: Column(
               children: [
                 CustomTextField(
-                    title: burgerKing,
+                    title: businessName,
                     controller: businessNameController,
                     context: context,
                     validator: (value) {
@@ -63,7 +63,7 @@ class _GeneralInfoScreenState extends State<GeneralInfoScreen> {
                   height: size.height / 34,
                 ),
                 CustomTextField(
-                    title: burgerKingEmail,
+                    title: businessEmail,
                     context: context,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -77,7 +77,7 @@ class _GeneralInfoScreenState extends State<GeneralInfoScreen> {
                   height: size.height / 34,
                 ),
                 CustomTextField(
-                    title: address,
+                    title: businessAddress,
                     context: context,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -91,7 +91,7 @@ class _GeneralInfoScreenState extends State<GeneralInfoScreen> {
                   height: size.height / 34,
                 ),
                 CustomTextField(
-                    title: phone,
+                    title: businessphone,
                     context: context,
                     validator: (value) {
                       if (value.length != 10) {

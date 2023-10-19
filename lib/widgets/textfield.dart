@@ -7,12 +7,6 @@ Widget CustomTextField({String? title,context,keytype,controller,formkey,validat
       controller:controller ,
       onChanged: onchange,
       validator:validator,
-      // (value){
-      //   if(value == null || value.isEmpty ){
-      //     return "Please Enter some Value";
-      //   }
-      //   return null;
-      // },
       keyboardType: keytype,
       decoration: InputDecoration(
         hintStyle: TextStyle(

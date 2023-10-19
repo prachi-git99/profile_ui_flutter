@@ -3,10 +3,10 @@ const profile = "Profile";
 //general info screen
 const generalInfo = "General Information";
 const generalInfoDesc = "Enter your business details";
-const burgerKing = "Burger King";
-const address = "Address";
-const burgerKingEmail = "www.burgerking.in";
-const phone = "Phone Number (Optional)";
+const businessName = "Burger King";
+const businessAddress = "Address";
+const businessEmail = "www.burgerking.in";
+const businessphone = "Phone Number (Optional)";
 const buttonTxt = "Update and Save Changes";
 
 const businessInfo = "Business Information";
