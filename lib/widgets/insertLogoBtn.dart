@@ -1,6 +1,6 @@
 import 'package:interview/consts/consts.dart';
 
-Widget InsertLogoBtn(context){
+Widget InsertLogoBtn({context, imageUpload}){
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 50,
@@ -11,7 +11,7 @@ Widget InsertLogoBtn(context){
       ),
     ),
     child: InkWell(
-      onTap: () {},
+      onTap: imageUpload,
       child: const Center(
         child: Text(
           "Insert Business Logo",

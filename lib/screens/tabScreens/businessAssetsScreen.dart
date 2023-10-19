@@ -1,3 +1,7 @@
+import 'dart:developer';
+import 'dart:io';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:interview/consts/consts.dart';
 import 'package:interview/widgets/descTextField.dart';
 import 'package:interview/widgets/heading.dart';
@@ -6,8 +10,39 @@ import 'package:interview/widgets/insertLogoBtn.dart';
 import 'package:interview/widgets/logoImg.dart';
 import 'package:interview/widgets/updateBtn.dart';
 
-class BusinessAssetScreen extends StatelessWidget {
+class BusinessAssetScreen extends StatefulWidget {
   const BusinessAssetScreen({Key? key}) : super(key: key);
+
+  @override
+  State<BusinessAssetScreen> createState() => _BusinessAssetScreenState();
+}
+
+class _BusinessAssetScreenState extends State<BusinessAssetScreen> {
+  final ImagePicker _picker = ImagePicker();
+  TextEditingController descController = TextEditingController();
+
+  File? image;
+
+  Future imgFromGallery() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if(image == null) return;
+      final imageTemp = File(image.path);
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
+    }
+  }
+  Future imgFromCamera() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.camera);
+      if(image == null) return;
+      final imageTemp = File(image.path);
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,23 +67,57 @@ class BusinessAssetScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                InsertLogoBtn(context),
+                InsertLogoBtn(context:context,imageUpload:(){
+                  // imgFromGallery();
+                  _showPicker(context);
+                } ),
                 SizedBox(height: size.height/34,),
-                LogoImg(context),
+                LogoImg(context:context,imageFile: image),
                 SizedBox(height: size.height/34,),
-                DescTextField(title: dummyText)
-
-
+                DescTextField(title: dummyText,controller: descController,
+                  context: context,)
               ],
             ),
           ),
         ),
-        UpdateBtn(title:buttonTxt,context: context)
-
-
-
-
+        UpdateBtn(title:buttonTxt,context: context,onSave: (){
+          var data = {
+            "businessDescription" : descController.text,
+            "imageUrl":image
+          };
+          log("$data");
+        })
       ],
     );
+  }
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Gallery'),
+                      onTap: () {
+                        imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

@@ -117,6 +117,10 @@ class _GeneralInfoScreenState extends State<GeneralInfoScreen> {
                 submitForm(businessNameController, businessWebsiteController,
                     businessAddressController, businessPhoneController);
               }
+              businessNameController.clear();
+              businessWebsiteController.clear();
+              businessAddressController.clear();
+              businessPhoneController.clear();
             })
       ],
     );

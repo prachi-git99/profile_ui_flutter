@@ -1,8 +1,8 @@
 import 'package:interview/consts/consts.dart';
 
-Widget DescTextField({String? title}){
+Widget DescTextField({String? title,context,controller}){
   return TextField(
-
+    controller: controller,
     maxLines: 4,
     decoration: InputDecoration(
       hintStyle: TextStyle(

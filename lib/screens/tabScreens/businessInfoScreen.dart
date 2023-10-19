@@ -6,9 +6,14 @@ import 'package:interview/widgets/headingDescription.dart';
 import 'package:interview/widgets/textfield.dart';
 import 'package:interview/widgets/updateBtn.dart';
 
-class BusinessInfoScreen extends StatelessWidget {
+class BusinessInfoScreen extends StatefulWidget {
   const BusinessInfoScreen({Key? key}) : super(key: key);
 
+  @override
+  State<BusinessInfoScreen> createState() => _BusinessInfoScreenState();
+}
+
+class _BusinessInfoScreenState extends State<BusinessInfoScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -32,7 +37,7 @@ class BusinessInfoScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                DropdownWidget(),
+                DropdownWidget(context),
                 SizedBox(height: size.height/34,),
                 AddLocationButton(),
               ],
