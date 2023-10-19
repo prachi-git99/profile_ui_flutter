@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:interview/consts/consts.dart';
 
-Widget UpdateBtn({String? title,context}){
+Widget UpdateBtn(
+    {String? title,
+    context,
+    onSave
+    }) {
   return Container(
-    margin: EdgeInsets.symmetric(horizontal: 15,vertical: 30),
+    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 30),
     width: MediaQuery.of(context).size.width,
     height: 50,
     decoration: BoxDecoration(
@@ -12,13 +18,13 @@ Widget UpdateBtn({String? title,context}){
       ),
     ),
     child: InkWell(
-      onTap: () {},
+      onTap: onSave,
       child: const Center(
         child: Text(
           buttonTxt,
           style: TextStyle(
             color: whiteColor,
-            fontSize:18,
+            fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -26,3 +32,4 @@ Widget UpdateBtn({String? title,context}){
     ),
   );
 }
+
